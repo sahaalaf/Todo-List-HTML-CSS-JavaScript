@@ -143,3 +143,11 @@ ul li.checked::before{
     border-radius: 40px;
     color: white;
 }
+
+.color-toggle{
+    background-color: rgb(157, 203, 157);
+}
+
+.color-toggle-1{
+    background-color: rgb(171, 86, 80);
+}

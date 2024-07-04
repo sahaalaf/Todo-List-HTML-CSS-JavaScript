@@ -31,9 +31,30 @@ function addEventListeners(listItem) {
     listItem.addEventListener("click", (e) => {
         if (e.target.tagName === "LI") {
             listItem.classList.toggle("checked");
+            listItem.classList.toggle("color-toggle");
             saveDataLocalStorage();
         } else if (e.target.tagName === "SPAN") {
             e.target.parentElement.remove();
+            saveDataLocalStorage();
+        } 
+    });
+
+    hoverOnCross(listItem);
+}
+
+function hoverOnCross(listItem){
+    listItem.addEventListener("mouseover", (e) => {
+        if(e.target.tagName === "SPAN"){
+            listItem.classList.add("color-toggle-1");
+            console.log("cross is hover");
+            saveDataLocalStorage();
+        }
+    });
+
+    listItem.addEventListener("mouseout", (e) => {
+        if(e.target.tagName === "SPAN"){
+            listItem.classList.remove("color-toggle-1");
+            console.log("cross is not hover");
             saveDataLocalStorage();
         }
     });
@@ -42,8 +63,6 @@ function addEventListeners(listItem) {
 function sameTask(taskText) {
     let existingTasks = document.querySelectorAll("li");
     for (let task of existingTasks) {
-        
-        // we need just name of li to compare
         let taskName = task.childNodes[0].nodeValue.trim();
         if (taskName.toLowerCase() === taskText.toLowerCase()) {
             return true;
